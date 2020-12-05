@@ -4,19 +4,6 @@
 *
 */
 (function($){
-
-				$('#seeAnagram').click(function() {
-					if($(this).is(':checked')) {
-						$('.anagram').addClass('show');
-					} else {
-						$('.anagram').removeClass('show');
-					}
-				});
-				$('#reset').click(function() {
-					localStorage.removeItem('puzzle1');
-				});
-
-
 	$.fn.crossword = function(entryData) {
 			/*
 				Qurossword Puzzle: a javascript + jQuery crossword puzzle
@@ -32,8 +19,6 @@
 				- Entry orientation must be provided in lieu of provided ending x,y coordinates (script could be adjust to use ending x,y coords)
 				- Answers are best provided in lower-case, and can NOT have spaces - will add support for that later
 			*/
-
-
 
 			var puzz = {}; // put data array in object literal to namespace it into safety
 			puzz.data = entryData;
@@ -68,19 +53,6 @@
 			var puzInit = {
 				
 				init: function() {
-					 
-
-						if(solvedListId) {
-							solvedListArray = solvedListId.split(',');
-							solvedArrayFiltered = solvedListArray.filter((item, index) => {
-								return solvedListArray.indexOf(item) === index;
-							});
-							for (const element of solvedArrayFiltered) {
-								var defSolved = '.definition-'+element;
-								$(defSolved).addClass('clue-done');
-							}
-						}
-
 					solvedListId = localStorage.getItem('puzzle1');
 					if(solvedListId !== null) {
 						solvedListArray = solvedListId.split(',');
@@ -166,10 +138,9 @@
 						mode = "setting ui";
 						if (solvedToggle) solvedToggle = false;
 						nav.updateByEntry(e);
-						e.preventDefault();
-									
+						e.preventDefault();			
 					});
-					
+	
 					
 					// click/tab clues 'navigation' handler setup
 					clues.delegate('li', 'click', function(e) {
@@ -618,9 +589,40 @@
 				
 			}; // end util object
 
-				
+			
+			
+			
 			puzInit.init();
-	
+			$( document ).ready(function() {
+				$('#seeAnagram').click(function() {
+					if($(this).is(':checked')) {
+						$('.anagram').addClass('show');
+					} else {
+						$('.anagram').removeClass('show');
+					}
+				});
+				$('#reset').click(function() {
+					localStorage.removeItem('puzzle1');
+				});
+			});
+			$(window).load(function () {
+				solvedDefinition(); 
+			});
+
+			function solvedDefinition(){
+				if(solvedListId) {
+					solvedListArray = solvedListId.split(',');
+					solvedArrayFiltered = solvedListArray.filter((item, index) => {
+						return solvedListArray.indexOf(item) === index;
+					});
+					for (const element of solvedArrayFiltered) {
+						var defSolved = '.definition-'+element;
+						$(defSolved).addClass('clue-done');
+					}
+				}
+			}
+
+			
 							
 	}
 	
