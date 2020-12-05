@@ -1,0 +1,242 @@
+html, body {
+  height: 100%;
+  margin: 0em;
+}
+body {
+  font: 62.5%/1.3em Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+table { 
+  border-collapse: collapse; 
+  border-spacing: 0; 
+  max-width: 100%;
+}
+table tr{
+  width: 100%;
+}
+table td {
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 0.8em;
+  font-weight: normal;
+  height: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 40px;
+}
+
+.puzzle-wrapper{
+  height: 100%;
+  margin: 12px 0 12px 12px;
+  overflow-y: auto;
+}
+
+.puzzle-inner{
+  display: flex;
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.puzzle-clues ul{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+td input {
+  width: 100%;
+  height: 100%;
+  padding: 0em;
+  border: none;
+  text-align: center;
+  font-size: 3em;
+  color: #000;
+  background-color: #eee;
+  text-transform: uppercase;
+}
+
+td input:focus {
+  background-color: #fff;
+}
+
+td span {
+  color: #000;
+  font-size: 0.8em;
+  position: absolute;
+  top: 0;
+  left: 2px;
+}
+
+td span.second {
+  left: 10px;
+}
+
+input.done,
+.solved input{
+  font-weight: bold;
+  color: #43af00;
+}
+
+.active,
+.done.active,
+.solved .active,
+.done.active + .first,
+.done.active + .first + .second,
+.active + .first, 
+.active + .first + .second{
+  background-color: #555;
+  color: #fff;
+}
+
+li[class^="definition"] {
+  border: solid 1px transparent;
+}
+
+
+.clue-done {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.puzzle-clues li{
+  font-size: 1.2em;
+}
+
+.puzzle-success{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left:0;
+  position:absolute;
+  top: 0;
+  width: 100%;
+}
+
+.anagram{
+  display:none;
+  margin: 4px 0;
+  text-transform : uppercase;
+}
+
+.anagram.show{
+  display:block;
+}
+
+.settings {
+  align-items: center;
+  display:flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: solid 1px green;
+  box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.37);
+}
+
+
+.settings input[type="checkbox"] {
+  margin-right:8px;
+}
+
+.settings input[type="button"] {
+  font-size: 1rem;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+}
+
+.settings label {
+  font-size: 1rem;
+  margin-right:24px;
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    overflow:hidden;
+  }
+  table td {
+    width: 40px;
+    height: 40px;
+  }
+  .puzzle-wrapper{
+    height: calc(100% - 24px);
+  }
+  .puzzle-inner{
+    align-items: center;
+    flex-direction: column;
+  }
+  .puzzle-grid{
+    display: flex;
+    justify-content: flex-start;
+    order: 2;
+    height: calc(100% - 80px);
+    margin: 0;
+    overflow: auto;
+  }
+  .puzzle-clues{
+    height: 100px;
+    order: 1;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .puzzle-clues li:not(.clues-active){
+    display: none;
+  }
+  .puzzle-clues h2{
+    display: none;
+  }
+  .puzzle-clues ul{
+    margin: 8px 0 0 0;
+  }
+  
+  .puzzle-clues li{
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 721px) {
+  .puzzle-grid{
+    justify-content: center;
+    padding-right: 4px;
+  }
+  .puzzle-clues{
+    height: 80px;
+    padding-left: 4px;
+  }
+  .puzzle-clues ul{
+    margin: 0 0 24px;
+  }
+  
+  .puzzle-clues li{
+    margin:0 0 8px;
+  }
+  li[class^="definition"].clues-active{
+    border-color: green;
+  }
+}
+
+      
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: green; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #358304; 
+}
