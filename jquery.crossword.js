@@ -588,39 +588,10 @@
 				},
 				
 			}; // end util object
-
-			
+		
 			
 			
 			puzInit.init();
-			$( document ).ready(function() {
-				$('#seeAnagram').click(function() {
-					if($(this).is(':checked')) {
-						$('.anagram').addClass('show');
-					} else {
-						$('.anagram').removeClass('show');
-					}
-				});
-				$('#reset').click(function() {
-					localStorage.removeItem('puzzle1');
-				});
-			});
-			$(window).load(function () {
-				solvedDefinition(); 
-			});
-
-			function solvedDefinition(){
-				if(solvedListId) {
-					solvedListArray = solvedListId.split(',');
-					solvedArrayFiltered = solvedListArray.filter((item, index) => {
-						return solvedListArray.indexOf(item) === index;
-					});
-					for (const element of solvedArrayFiltered) {
-						var defSolved = '.definition-'+element;
-						$(defSolved).addClass('clue-done');
-					}
-				}
-			}
 
 			
 							
