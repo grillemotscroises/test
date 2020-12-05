@@ -16,19 +16,7 @@
 					localStorage.removeItem('puzzle1');
 				});
 
-				solvedDefinition(); 
-			function solvedDefinition(){
-				if(solvedListId) {
-					solvedListArray = solvedListId.split(',');
-					solvedArrayFiltered = solvedListArray.filter((item, index) => {
-						return solvedListArray.indexOf(item) === index;
-					});
-					for (const element of solvedArrayFiltered) {
-						var defSolved = '.definition-'+element;
-						$(defSolved).addClass('clue-done');
-					}
-				}
-			}
+
 	$.fn.crossword = function(entryData) {
 			/*
 				Qurossword Puzzle: a javascript + jQuery crossword puzzle
@@ -80,6 +68,19 @@
 			var puzInit = {
 				
 				init: function() {
+					 
+
+						if(solvedListId) {
+							solvedListArray = solvedListId.split(',');
+							solvedArrayFiltered = solvedListArray.filter((item, index) => {
+								return solvedListArray.indexOf(item) === index;
+							});
+							for (const element of solvedArrayFiltered) {
+								var defSolved = '.definition-'+element;
+								$(defSolved).addClass('clue-done');
+							}
+						}
+
 					solvedListId = localStorage.getItem('puzzle1');
 					if(solvedListId !== null) {
 						solvedListArray = solvedListId.split(',');
